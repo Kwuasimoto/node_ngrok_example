@@ -4,10 +4,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const body_parser_1 = __importDefault(require("body-parser"));
 class ExpressServerBuilder {
     constructor() {
         this._port = 3000;
-        this._app = (0, express_1.default)();
+        this._app = (0, express_1.default)()
+            .use(express_1.default.json({ type: "*/*" }))
+            .use(body_parser_1.default.json());
     }
     open() {
         this._app.post('/api/webhook', (req, res) => {

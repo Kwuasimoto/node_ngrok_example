@@ -3,6 +3,7 @@
  */
 
 import express, {Express} from "express";
+import bodyParser from "body-parser";
 
 export default class ExpressServerBuilder {
     private readonly _app: Express
@@ -10,6 +11,8 @@ export default class ExpressServerBuilder {
 
     constructor() {
         this._app = express()
+            .use(express.json({type: "*/*"}))
+            .use(bodyParser.json())
     }
 
     /**
